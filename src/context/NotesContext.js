@@ -3,7 +3,11 @@ import React from "react";
 const NotesContext = React.createContext();
 
 export const NotesProvider = ({ children }) => {
-  return <NotesContext.Provider value={5}>{children}</NotesContext.Provider>;
+  const notesList = [{ title: "Note #1" }, { title: "Note #2" }];
+
+  return (
+    <NotesContext.Provider value={notesList}>{children}</NotesContext.Provider>
+  );
 };
 
 export default NotesContext;

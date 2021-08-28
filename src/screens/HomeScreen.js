@@ -1,15 +1,20 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 
 import NotesContext from "../context/NotesContext";
 
 const HomeScreen = () => {
-  const value = React.useContext(NotesContext);
+  const notesList = React.useContext(NotesContext);
 
   return (
     <View>
-      <Text>Home Screen</Text>
-      <Text>NotesContext value: {value}</Text>
+      <FlatList
+        keyExtractor={(note) => note.title}
+        data={notesList}
+        renderItem={({ item }) => {
+          return <Text>{item.title}</Text>;
+        }}
+      />
     </View>
   );
 };
