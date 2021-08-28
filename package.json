@@ -1,5 +1,21 @@
 {
+  "name": "rn-notes-app",
+  "version": "1.0.0",
+  "description": "Notes App built with React Native",
+  "author": "Enea Xharja",
+  "license": "MIT",
+  "keywords": [
+    "react-native"
+  ],
   "main": "node_modules/expo/AppEntry.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eneax/rn-notes-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eneax/rn-notes-app/issues"
+  },
+  "homepage": "https://github.com/eneax/rn-notes-app#readme",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -17,6 +33,5 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
-  },
-  "private": true
+  }
 }
