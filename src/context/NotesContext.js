@@ -7,7 +7,7 @@ const notesReducer = (state, action) => {
         ...state,
         {
           id: Math.floor(Math.random() * 9999999),
-          title: `Note #${state.length + 1}`,
+          title: `Note #${state.length + Math.floor(Math.random() * 9999999)}`,
         },
       ];
     case "delete_note":
