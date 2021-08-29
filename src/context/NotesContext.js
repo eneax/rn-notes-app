@@ -10,6 +10,8 @@ const notesReducer = (state, action) => {
           title: `Note #${state.length + 1}`,
         },
       ];
+    case "delete_note":
+      return state.filter(({ id }) => id !== action.payload);
     default:
       return state;
   }
@@ -19,8 +21,12 @@ const addNote = (dispatch) => {
   return () => dispatch({ type: "add_note" });
 };
 
+const deleteNote = (dispatch) => {
+  return (id) => dispatch({ type: "delete_note", payload: id });
+};
+
 export const { Context, Provider } = createDataContext(
   notesReducer,
-  { addNote },
+  { addNote, deleteNote },
   []
 );
