@@ -11,7 +11,7 @@ import { Feather } from "@expo/vector-icons";
 
 import { Context as NotesContext } from "../context/NotesContext";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const { state, addNote, deleteNote } = React.useContext(NotesContext);
 
   return (
@@ -23,14 +23,21 @@ const HomeScreen = () => {
         data={state}
         renderItem={({ item }) => {
           return (
-            <View style={styles.noteContainerStyles}>
-              <Text style={styles.noteTitleStyles}>
-                {item.title} - {item.id}
-              </Text>
-              <TouchableOpacity onPress={() => deleteNote(item.id)}>
-                <Feather name="trash-2" size={24} color="black" />
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Note Details", { noteId: item.id })
+              }
+            >
+              <View style={styles.noteContainerStyles}>
+                <Text style={styles.noteTitleStyles}>
+                  {item.title} - {item.id}
+                </Text>
+
+                <TouchableOpacity onPress={() => deleteNote(item.id)}>
+                  <Feather name="trash-2" size={24} color="black" />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           );
         }}
       />
