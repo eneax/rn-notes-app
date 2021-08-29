@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, FlatList, Button } from "react-native";
 
-import NotesContext from "../context/NotesContext";
+import { Context as NotesContext } from "../context/NotesContext";
 
 const HomeScreen = () => {
-  const { data, addNote } = React.useContext(NotesContext);
+  const { state, addNote } = React.useContext(NotesContext);
 
   return (
     <View>
@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
       <FlatList
         keyExtractor={(note) => note.title}
-        data={data}
+        data={state}
         renderItem={({ item }) => {
           return <Text>{item.title}</Text>;
         }}
