@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import { Context as NotesContext } from "../context/NotesContext";
 
@@ -10,10 +10,24 @@ const DetailsScreen = ({ route }) => {
   const noteDetails = state.find((note) => note.id === noteId);
 
   return (
-    <View>
-      <Text>{noteDetails.title}</Text>
+    <View style={styles.screenContainer}>
+      <Text style={styles.titleStyles}>{noteDetails.title}</Text>
+      <Text style={styles.contentStyles}>{noteDetails.content}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  screenContainer: {
+    padding: 15,
+  },
+  titleStyles: {
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  contentStyles: {
+    fontSize: 16,
+  },
+});
 
 export default DetailsScreen;

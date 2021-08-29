@@ -7,7 +7,8 @@ const notesReducer = (state, action) => {
         ...state,
         {
           id: Math.floor(Math.random() * 9999999),
-          title: `Note #${state.length + Math.floor(Math.random() * 9999999)}`,
+          title: action.payload.title,
+          content: action.payload.content,
         },
       ];
     case "delete_note":
@@ -18,7 +19,10 @@ const notesReducer = (state, action) => {
 };
 
 const addNote = (dispatch) => {
-  return () => dispatch({ type: "add_note" });
+  return (title, content, callback) => {
+    dispatch({ type: "add_note", payload: { title, content } });
+    callback();
+  };
 };
 
 const deleteNote = (dispatch) => {
