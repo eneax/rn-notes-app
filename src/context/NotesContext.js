@@ -1,6 +1,4 @@
-import React from "react";
-
-const NotesContext = React.createContext();
+import createDataContext from "./createDataContext";
 
 const notesReducer = (state, action) => {
   switch (action.type) {
@@ -11,18 +9,12 @@ const notesReducer = (state, action) => {
   }
 };
 
-export const NotesProvider = ({ children }) => {
-  const [notesList, dispatch] = React.useReducer(notesReducer, []);
-
-  const addNote = () => {
-    dispatch({ type: "add_note" });
-  };
-
-  return (
-    <NotesContext.Provider value={{ data: notesList, addNote }}>
-      {children}
-    </NotesContext.Provider>
-  );
+const addNote = (dispatch) => {
+  return () => dispatch({ type: "add_note" });
 };
 
-export default NotesContext;
+export const { Context, Provider } = createDataContext(
+  notesReducer,
+  { addNote },
+  []
+);
