@@ -25,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
           return (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("Note Details", { id: item.id })
+                navigation.navigate("Note Details", { noteId: item.id })
               }
             >
               <View style={styles.noteContainerStyles}>
