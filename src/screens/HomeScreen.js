@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  Button,
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
@@ -12,11 +11,13 @@ import { Feather } from "@expo/vector-icons";
 import { Context as NotesContext } from "../context/NotesContext";
 
 const HomeScreen = ({ navigation }) => {
-  const { state, addNote, deleteNote } = React.useContext(NotesContext);
+  const { state, deleteNote } = React.useContext(NotesContext);
 
   return (
     <View>
-      <Button title="Add Note" onPress={addNote} />
+      <Text style={styles.headingStyles}>
+        Your personal collection of notes.
+      </Text>
 
       <FlatList
         keyExtractor={(note) => note.title}
@@ -46,6 +47,10 @@ const HomeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  headingStyles: {
+    fontSize: 16,
+    padding: 15,
+  },
   noteContainerStyles: {
     flexDirection: "row",
     justifyContent: "space-between",
