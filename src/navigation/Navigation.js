@@ -26,19 +26,7 @@ export default () => {
             ),
           })}
         />
-        <Stack.Screen
-          name="Note Details"
-          component={DetailsScreen}
-          options={({ navigation }) => ({
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Edit Note")}
-              >
-                <Feather name="edit" size={24} color="black" />
-              </TouchableOpacity>
-            ),
-          })}
-        />
+        <Stack.Screen name="Note Details" component={DetailsScreen} />
         <Stack.Screen name="Create" component={CreateScreen} />
         <Stack.Screen name="Edit Note" component={EditScreen} />
       </Stack.Navigator>

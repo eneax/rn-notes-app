@@ -1,10 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-const EditScreen = () => {
+const EditScreen = ({ route }) => {
+  const { noteId } = route.params;
+
   return (
     <View>
-      <Text>Edit Note</Text>
+      <Text>Edit Note: {noteId}</Text>
     </View>
   );
 };
