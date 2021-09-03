@@ -7,6 +7,7 @@ import { Feather } from "@expo/vector-icons";
 import HomeScreen from "../screens/HomeScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import CreateScreen from "../screens/CreateScreen";
+import EditScreen from "../screens/EditScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ export default () => {
         />
         <Stack.Screen name="Note Details" component={DetailsScreen} />
         <Stack.Screen name="Create" component={CreateScreen} />
+        <Stack.Screen name="Edit Note" component={EditScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
