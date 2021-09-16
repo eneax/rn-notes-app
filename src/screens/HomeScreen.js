@@ -11,7 +11,11 @@ import { Feather } from "@expo/vector-icons";
 import { Context as NotesContext } from "../context/NotesContext";
 
 const HomeScreen = ({ navigation }) => {
-  const { state, deleteNote } = React.useContext(NotesContext);
+  const { state, deleteNote, getNotes } = React.useContext(NotesContext);
+
+  React.useEffect(() => {
+    getNotes();
+  }, []);
 
   return (
     <View>
