@@ -44,7 +44,9 @@ const deleteNote = (dispatch) => {
 };
 
 const editNote = (dispatch) => {
-  return (id, title, content, callback) => {
+  return async (id, title, content, callback) => {
+    await jsonServer.put(`/notes/${id}`, { title, content });
+
     dispatch({ type: "edit_note", payload: { id, title, content } });
     if (callback) {
       callback();
