@@ -11,7 +11,19 @@ import { Feather } from "@expo/vector-icons";
 import { Context as NotesContext } from "../context/NotesContext";
 
 const HomeScreen = ({ navigation }) => {
-  const { state, deleteNote } = React.useContext(NotesContext);
+  const { state, deleteNote, getNotes } = React.useContext(NotesContext);
+
+  React.useEffect(() => {
+    getNotes();
+
+    const unsubscribe = navigation.addListener("focus", () => {
+      // The screen is focused
+      getNotes();
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <View>
