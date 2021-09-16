@@ -36,7 +36,11 @@ const addNote = () => {
 };
 
 const deleteNote = (dispatch) => {
-  return (id) => dispatch({ type: "delete_note", payload: id });
+  return async (id) => {
+    await jsonServer.delete(`/notes/${id}`);
+
+    dispatch({ type: "delete_note", payload: id });
+  };
 };
 
 const editNote = (dispatch) => {
