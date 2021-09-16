@@ -15,7 +15,15 @@ const HomeScreen = ({ navigation }) => {
 
   React.useEffect(() => {
     getNotes();
-  }, []);
+
+    const unsubscribe = navigation.addListener("focus", () => {
+      // The screen is focused
+      getNotes();
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <View>

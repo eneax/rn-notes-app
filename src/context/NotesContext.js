@@ -6,15 +6,6 @@ const notesReducer = (state, action) => {
     case "get_notes":
       // replaced state with response from API (single source of truth)
       return action.payload;
-    case "add_note":
-      return [
-        ...state,
-        {
-          id: Math.floor(Math.random() * 9999999),
-          title: action.payload.title,
-          content: action.payload.content,
-        },
-      ];
     case "delete_note":
       return state.filter(({ id }) => id !== action.payload);
     case "edit_note":
@@ -34,9 +25,10 @@ const getNotes = (dispatch) => {
   };
 };
 
-const addNote = (dispatch) => {
-  return (title, content, callback) => {
-    dispatch({ type: "add_note", payload: { title, content } });
+const addNote = () => {
+  return async (title, content, callback) => {
+    await jsonServer.post("/notes", { title, content });
+
     if (callback) {
       callback();
     }
