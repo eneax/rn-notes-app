@@ -1,7 +1,11 @@
 import createDataContext from "./createDataContext";
+import jsonServer from "../api/jsonServer";
 
 const notesReducer = (state, action) => {
   switch (action.type) {
+    case "get_notes":
+      // replaced state with response from API (single source of truth)
+      return action.payload;
     case "add_note":
       return [
         ...state,
@@ -20,6 +24,14 @@ const notesReducer = (state, action) => {
     default:
       return state;
   }
+};
+
+const getNotes = (dispatch) => {
+  return async () => {
+    const response = await jsonServer.get("/notes");
+
+    dispatch({ type: "get_notes", payload: response.data }); // response.data === [{}, {}, {}]
+  };
 };
 
 const addNote = (dispatch) => {
@@ -46,6 +58,6 @@ const editNote = (dispatch) => {
 
 export const { Context, Provider } = createDataContext(
   notesReducer,
-  { addNote, deleteNote, editNote },
+  { getNotes, addNote, deleteNote, editNote },
   []
 );
